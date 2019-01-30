@@ -8,6 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const wss = new ws.Server({ server });
 
+// based on https://www.npmjs.com/package/ws#simple-server
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
@@ -16,11 +17,6 @@ wss.on('connection', function connection(ws) {
   ws.send('something');
 });
  
-server.listen(8080);
-
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
-
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
@@ -30,6 +26,6 @@ app.get('/', function(request, response) {
 });
 
 // listen for requests :)
-const listener = app.listen(process.env.PORT, function() {
+const listener = server.listen(process.env.PORT, function() {
   console.log('Your app is listening on port ' + listener.address().port);
 });

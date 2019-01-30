@@ -1,5 +1,5 @@
 // Create WebSocket connection.
-const socket = new WebSocket('ws://localhost:8080');
+const socket = new WebSocket(window.location.origin.replace(/^https/, 'wss'));
 
 // Connection opened
 socket.addEventListener('open', function (event) {
