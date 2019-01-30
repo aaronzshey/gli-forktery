@@ -1,9 +1,22 @@
-// server.js
-// where your node app starts
+const http = require('http');
 
-// init project
 const express = require('express');
+const ws = require('ws');
+
 const app = express();
+
+const server = http.createServer(app);
+const wss = new ws.Server({ server });
+
+wss.on('connection', function connection(ws) {
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+ 
+  ws.send('something');
+});
+ 
+server.listen(8080);
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
