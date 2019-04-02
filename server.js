@@ -8,14 +8,30 @@ const app = express();
 const server = http.createServer(app);
 const wss = new ws.Server({ server });
 
+let sockets = new Set();
+
 // based on https://www.npmjs.com/package/ws#simple-server
 wss.on('connection', function connection(ws) {
+  sockets.add(ws);
+
   ws.on('message', function incoming(message) {
     console.log('received: %s', message);
   });
- 
-  ws.send('something');
+  
+  ws.on('close', function () {
+    sockets.delete(ws);
+    update();
+  });
+  
+  update();
 });
+
+function update() {
+  sockets.forEach(ws => ws.send(JSON.stringify({
+    type: 'count',
+    count: sockets.size
+  })));
+}
  
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
