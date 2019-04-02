@@ -1,4 +1,4 @@
-# Starter app for the `ws` library
+# `ws` Web Socket Starter App
 
 A simple websocket example using the ws node.js library
 
