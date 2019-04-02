@@ -20,18 +20,20 @@ function openSocket() {
   // Listen for messages
   socket.addEventListener('message', function (event) {
     let data;
-    // this example expects every message to be in JSON format.
     try {
+      // this example expects every message to be in JSON format.
       data = JSON.parse(event.data);
     } catch (e) {
       console.warn('invalid message from the server!');
       return;
     }
     console.log('message:', data);
+    // if it's a message about the client count, update the elements
     if (data.type === 'count') {
       document.querySelector('.count').innerText = data.count;
     }
   });
 }
 
+// open a connection when the script is loaded
 openSocket();
