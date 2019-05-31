@@ -9,7 +9,7 @@ const server = http.createServer(app);
 // pass the created server to ws
 const wss = new ws.Server({ server });
 
-// we're using an ES2015 Set to keep track of every client that's connected/
+// we're using an ES2015 Set to keep track of every client that's connected
 let sockets = new Set();
 
 // based on https://www.npmjs.com/package/ws#simple-server

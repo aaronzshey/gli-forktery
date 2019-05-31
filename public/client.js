@@ -13,7 +13,7 @@ function openSocket() {
 
   socket.addEventListener('close', function (event) {
     console.log('disconnected');
-    // the server went away, try re-connecting in a 5 seconds.
+    // the server went away, try re-connecting in 5 seconds.
     setTimeout(openSocket, 5000);
   });
 
