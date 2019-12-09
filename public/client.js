@@ -3,7 +3,7 @@ class FriendlyWebSocket {
     this.path = path;
     this.connect();
     this.connected = false;
-    this.messageHandlers = new Set()
+    this.messageHandlers = new Set();
   }
   
   connect() {
@@ -12,14 +12,14 @@ class FriendlyWebSocket {
     this.socket = new WebSocket(url);
     
     // Connection opened
-    this.socket.addEventListener('open', function (event) {
+    this.socket.addEventListener('open', (event) => {
       console.log('connected!');
       this.connected = true;
       // this isn't necessary, but it's polite to say hi!
       this.socket.send('Hello Server!');
     });
 
-    this.socket.addEventListener('close', function (event) {
+    this.socket.addEventListener('close', (event) => {
       console.log('disconnected');
       this.connected = false;
       // the server went away, try re-connecting in 5 seconds.
@@ -27,7 +27,7 @@ class FriendlyWebSocket {
     });
 
     // Listen for messages
-    this.socket.addEventListener('message', function (event) {
+    this.socket.addEventListener('message', (event) => {
       // tell the listeners about it
       this.messageHandlers.forEach(handler => {
         // don't let one listener spoil the batch
@@ -66,7 +66,7 @@ function onMessage(data) {
     // this example expects every message to be in JSON format.
     data = JSON.parse(event.data);
   } catch (e) {
-    console.warn('invalid message from server', )
+    console.warn('invalid message from server', data);
   }
   // if it's a message about the client count, update the elements
   if (data.type === 'count') {
@@ -74,5 +74,5 @@ function onMessage(data) {
   }
 }
 
-// open a connection when the script is loaded
-let { send } = openSocket(onMessage);
+let s = new FriendlyWebSocket();
+s.on('message', onMessage);
