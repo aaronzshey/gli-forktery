@@ -3,19 +3,18 @@ class FriendlyWebSocket {
     this.path = path;
     this.connect();
     this.connected = false;
-    this.messageHandlers = new Set();
+    this._listeners = {
+      message: new Set()
+    };
   }
 
   connect() {
-    let url;
+    let protocol = 'ws://';
     if (location.protocol === 'https:') {
-      url = 'ws://' + location.host + this.path;
-    } else {
-      url = 'ws://' + location.host + this.path;
+      protocol = 'wss://';
     }
-    = window.location.origin.replace(/^https/, "wss") + this.path;
-    console.log(url);
-    this.socket = new WebSocket(url);
+    
+    this.socket = new WebSocket(protocol + location.host + this.path);
 
     // Connection opened
     this.socket.addEventListener("open", event => {
@@ -28,14 +27,14 @@ class FriendlyWebSocket {
     this.socket.addEventListener("close", event => {
       console.log("disconnected");
       this.connected = false;
-      // the server went away, try re-connecting in 5 seconds.
+      // the server went away, try re-connecting in 2 seconds.
       setTimeout(() => this.connect(), 2000);
     });
 
     // Listen for messages
     this.socket.addEventListener("message", event => {
       // tell the listeners about it
-      this.messageHandlers.forEach(handler => {
+      this._listeners.message.forEach(handler => {
         // don't let one listener spoil the batch
         try {
           handler(event.data);
@@ -47,8 +46,8 @@ class FriendlyWebSocket {
   }
 
   on(type, handler) {
-    if (type === "message") {
-      this.messageHandlers.add(handler);
+    if (type in this._listeners) {
+      this._listeners[type].add(handler);
     }
   }
 
