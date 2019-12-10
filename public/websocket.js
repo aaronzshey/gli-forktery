@@ -2,10 +2,10 @@
 
 // WebSockets are awesome, but they have a nasty habit of disconnecting
 // and not waking back up. This class is a wrapper around WebSocket that
-// handles automatic reconnection
+// handles automatic reconnection.
 
 class FriendlyWebSocket {
-  /
+  // optional customization of the websocket path
   constructor({ path = "/", url } = {}) {
     this.path = path;
     this.url = url;
@@ -22,7 +22,9 @@ class FriendlyWebSocket {
       protocol = 'wss://';
     }
     
-    this.socket = new WebSocket(protocol + location.host + this.path);
+    let url = this.url || (protocol + location.host + this.path);
+    
+    this.socket = new WebSocket(url);
 
     // Connection opened
     this.socket.addEventListener("open", event => {
