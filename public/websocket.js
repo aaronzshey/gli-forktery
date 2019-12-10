@@ -12,7 +12,9 @@ class FriendlyWebSocket {
     this.connect();
     this.connected = false;
     this._listeners = {
-      message: new Set()
+      message: new Set(),
+      open: new Set(),
+      close: new Set()
     };
   }
 
@@ -30,6 +32,7 @@ class FriendlyWebSocket {
     this.socket.addEventListener("open", event => {
       console.log("connected!");
       this.connected = true;
+      this._emit('open');
       // this isn't necessary, but it's polite to say hi!
       this.socket.send("Hello Server!");
     });
@@ -38,23 +41,28 @@ class FriendlyWebSocket {
       console.log("disconnected");
       this.connected = false;
       // the server went away, try re-connecting in 2 seconds.
+      this._emit('close');
       setTimeout(() => this.connect(), 2000);
     });
 
     // Listen for messages
     this.socket.addEventListener("message", event => {
       // tell the listeners about it
-      this._listeners.message.forEach(handler => {
-        // don't let one listener spoil the batch
-        try {
-          handler(event.data);
-        } catch (e) {
-          console.warn("error in message handler", e);
-        }
-      });
+      this._emit('message', event.data);
     });
   }
 
+  _emit(type, data) {
+    this._listeners[type].forEach(handler => {
+      // don't let one listener spoil the batch
+      try {
+        handler(data);
+      } catch (e) {
+        console.warn("error in message handler", e);
+      }
+    });
+  }
+  
   on(type, handler) {
     if (type in this._listeners) {
       this._listeners[type].add(handler);
