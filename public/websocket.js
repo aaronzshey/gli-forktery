@@ -1,11 +1,14 @@
 /* A Friendly WebSocket */
 
 // WebSockets are awesome, but they have a nasty habit of disconnecting
-// and not waking back up
+// and not waking back up. This class is a wrapper around WebSocket that
+// handles automatic reconnection
 
 class FriendlyWebSocket {
-  constructor({ path = "/" } = {}) {
+  /
+  constructor({ path = "/", url } = {}) {
     this.path = path;
+    this.url = url;
     this.connect();
     this.connected = false;
     this._listeners = {

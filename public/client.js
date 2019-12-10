@@ -1,5 +1,8 @@
 /* global FriendlyWebSocket */
+
+// check out websocket.js for what this is
 let s = new FriendlyWebSocket();
+
 s.on("message", data => {
   console.log("message:", data);
   try {
