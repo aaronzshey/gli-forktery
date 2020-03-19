@@ -7,11 +7,11 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.16.4",
-    "ws": "^6.2.1"
+    "express": "^4.17.1",
+    "ws": "^7.2.3"
   },
   "engines": {
-    "node": "8.x"
+    "node": "12.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/hello-express"
