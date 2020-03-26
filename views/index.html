@@ -2,15 +2,19 @@
 <html lang="en">
   <head>
     <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    
+    <link rel="stylesheet" href="/style.css" />
+
     <!-- import the webpage's client-side javascript file -->
     <script src="/client.js" defer></script>
   </head>
   <body>
-<p>
-  Something goes here.
+    <p>
+      Something goes here.
     </p>
-
+    
+    <form action="/quotes" method="POST">
+      <input type="text" placeholder="Your name" > 
+      <input type="text" placeholder="Your quote"> 
+    </form>
   </body>
 </html>

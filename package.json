@@ -9,7 +9,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "ws": "^7.2.3",
-    "mongodb": "^3.5.5"
+    "mongodb": "^3.5.5",
+    "body-parser": "^1.19.0"
   },
   "engines": {
     "node": "12.x"
@@ -24,5 +25,5 @@
     "express",
     "mongodb"
   ],
-    "throttle": 900000 
+  "throttle": 900000
 }
