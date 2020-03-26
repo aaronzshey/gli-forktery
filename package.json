@@ -1,26 +1,28 @@
 {
-  "name": "starter-ws",
+  "name": "gli-forktery",
   "version": "0.0.1",
-  "description": "A simple websocket example using the ws node.js library",
+  "description": "A place for me to play with CRUD",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.17.1",
-    "ws": "^7.2.3"
+    "ws": "^7.2.3",
+    "mongodb": "^3.5.5"
   },
   "engines": {
     "node": "12.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/hello-express"
+    "url": "https://glitch.com/edit/#!/gli-forktery"
   },
   "license": "MIT",
   "keywords": [
     "node",
     "glitch",
     "express",
-    "websocket"
-  ]
+    "mongodb"
+  ],
+    "throttle": 900000 
 }
