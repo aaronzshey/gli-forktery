@@ -10,3 +10,5 @@ app.listen('3000', function() {
 app.get("/", function(req,res){
   res.send("hello world")
 })
+
+console.log("cog is good")
