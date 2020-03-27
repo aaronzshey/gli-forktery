@@ -9,12 +9,13 @@
   </head>
   <body>
     <p>
-      Something goes here.
+      App time.
     </p>
 
     <form action="/quotes" method="POST">
-      <input type="text" placeholder="Your name" />
-      <input type="text" placeholder="Your quote" />
+      <input type="text" placeholder="Your name" name="name" />
+      <input type="text" placeholder="Your quote" name="quote" />
+      <!-- The name attributes help create the request object to be passed to the server -->
       <button type="submit">
         Submit
       </button>
