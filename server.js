@@ -3,12 +3,15 @@ const express = require("express");
 
 const app = express();
 
-app.listen('3000', function() {
-  console.log("Now listening!")
-})
+app.listen("3000", () => {
+  console.log("Now listening!");
+});
 
-app.get("/", function(req,res){
-  res.send("hello world")
-})
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/index.html")
+});
 
-console.log("cog is good")
+
+app.post("/quotes", (req, res) => {
+  console.log("Posted");
+});
