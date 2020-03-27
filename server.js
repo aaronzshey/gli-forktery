@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const app = express();
 const MongoClient = require("mongodb").MongoClient;
 const database =
-  "mongodb+srv://mongoGod:mongopass!@demo-cluster-dctcz.mongodb.net/test?retryWrites=true&w=majority";
+  "mongodb+srv://mongoGod:mongopass%21@demo-cluster-dctcz.mongodb.net/test?retryWrites=true&w=majority";
 var db;
 var client;
 
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
-
+/*
 MongoClient.connect(database, (err, database) => {
   if (err) {
     return console.log(err);
@@ -25,6 +25,7 @@ MongoClient.connect(database, (err, database) => {
     })
   
 });
+*/
 app.post("/quotes", (req, res) => {
   console.log(req.body);
 });
