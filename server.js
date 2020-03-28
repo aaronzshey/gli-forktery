@@ -18,8 +18,8 @@ app.get("/", (req, res) => {
 });
 
 /*
-MongoClient.connect(
-  "mongodb+srv://mongoGod:mongopass%21@demo-cluster-dctcz.mongodb.net/test?retryWrites=true&w=majority ",
+let connection = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPASS}@${process.env.MONGO_TARGET}/test?retryWrites=true&w=majority`
+MongoClient.connect(connection,
   (err, database) => {
     if (err) {
       return console.log(err);
@@ -40,4 +40,4 @@ app.post("/quotes", (req, res) => {
 mongodb+srv://mongoGod:mongopass!@ demo-cluster-dctcz.mongodb.net/test ?retryWrites=true&w=majority 
 mongodb://[dbuser:dbpassword@]host:port/dbname
 */
-console.log("start")
+console.log("start");
