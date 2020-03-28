@@ -4,8 +4,6 @@ const bodyParser = require("body-parser");
 const app = express();
 const MongoClient = require("mongodb").MongoClient;
 var database;
-let db;
-let client;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -17,20 +15,19 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-/*
-let connection = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPASS}@${process.env.MONGO_TARGET}/test?retryWrites=true&w=majority`
-MongoClient.connect(connection,
-  (err, database) => {
+var db;
+var connection = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPASS}@${process.env.MONGO_TARGET}/test?retryWrites=true&w=majority`
+MongoClient.connect(connection, { useUnifiedTopology: true } , 
+  (err, client) => {
     if (err) {
       return console.log(err);
-    }
+    
     db = client.db("demo-cluster");
-    //db is not defined
     app.listen(3000, () => {
       console.log("Listening on port 3000");
     });
   }
-);
+});
 
 app.post("/quotes", (req, res) => {
   console.log(req.body);
