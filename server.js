@@ -17,12 +17,13 @@ app.get("/", (req, res) => {
 
 var db;
 var connection = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPASS}@${process.env.MONGO_TARGET}/test?retryWrites=true&w=majority`
+console.log(connection)
 MongoClient.connect(connection, { useUnifiedTopology: true } , 
   (err, client) => {
     if (err) {
       return console.log(err);
     
-    db = client.db("demo-cluster");
+    db = client.db(process.env.DB_NAME);
     app.listen(3000, () => {
       console.log("Listening on port 3000");
     });
