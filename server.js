@@ -11,18 +11,19 @@ var listener = app.listen("8080", function() {
   console.log("Your app is listening on port " + listener.address().port);
 });
 
+
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
 var db;
-var connection = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPASS}@${process.env.MONGO_TARGET}/test?retryWrites=true&w=majority`
-console.log(connection)
-MongoClient.connect(connection, { useUnifiedTopology: true } , 
+var uri = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPASS}@${process.env.MONGO_TARGET}/test?retryWrites=true&w=majority`
+console.log(uri)
+/*
+MongoClient.connect(uri, { useUnifiedTopology: true } , 
   (err, client) => {
     if (err) {
       return console.log(err);
-    
     db = client.db(process.env.DB_NAME);
     app.listen(3000, () => {
       console.log("Listening on port 3000");
