@@ -7,7 +7,7 @@ var database;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var listener = app.listen("8080", function() {
+var listener = app.listen("8080", () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
 
@@ -24,23 +24,23 @@ const client = new MongoClient(uri, {
 });
 
 client.connect(err => {
-  if (err) {
+  if (err) 
     return console.log(err);
-    db = client.db(process.env.DB_NAME);
-    const collection = client.db("test").collection("devices");
-    client.close;
-    app.listen("3000", () => {
-      console.log("Listening on port 3000");
-    });
-  }
+  
+  db = client.db(process.env.DB_NAME);
+  app.listen("3000", () => {
+    console.log("Listening on port 3000");
+  });
 });
 
 app.post("/quotes", (req, res) => {
+  db.collection("samples").insertOne(req.body, (err,result) => {
+    if (err) return (console.log(err))
+    console.log(`saved to database ${process.env.DB_NAME}`)
+    res.redirect("/")
+  })
   console.log(req.body);
 });
 
-/*
-mongodb+srv://mongoGod:mongopass!@ demo-cluster-dctcz.mongodb.net/test ?retryWrites=true&w=majority 
-mongodb://[dbuser:dbpassword@]host:port/dbname
-*/
+
 console.log("start");
