@@ -18,16 +18,18 @@ app.get("/", (req, res) => {
 var db;
 const uri = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPASS}@${process.env.MONGO_TARGET}/test?retryWrites=true&w=majority`;
 console.log(uri);
-const client = new MongoClient(
-  uri,
-  { useNewUrlParser: true, useUnifiedTopology: true }
-);
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 client.connect(err => {
   if (err) {
     return console.log(err);
     db = client.db(process.env.DB_NAME);
-    app.listen(3000, () => {
+    const collection = client.db("test").collection("devices");
+    client.close;
+    app.listen("3000", () => {
       console.log("Listening on port 3000");
     });
   }
