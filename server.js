@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const MongoClient = require("mongodb").MongoClient;
+app.set("view engine", "ejs")
 var database;
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,7 +18,6 @@ app.get("/", (req, res) => {
 
 var db;
 const uri = `mongodb+srv://${process.env.MONGOUSER}:${process.env.MONGOPASS}@${process.env.MONGO_TARGET}/test?retryWrites=true&w=majority`;
-console.log(uri);
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
