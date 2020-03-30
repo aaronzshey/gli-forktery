@@ -42,12 +42,16 @@ app.post("/quotes", (req, res) => {
 });
 
 app.get("/", (req, res) => {
+  
   var cursor = db
     .collection("samples")
     .find()
     .toArray((err, results) => {
       console.log(results)
+      
     });
 });
+
+
 
 console.log("start");
