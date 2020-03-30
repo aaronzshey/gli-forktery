@@ -4,6 +4,5 @@
       "^package\\.json$",
       "^\\.env$"
     ]
-  },
-  "throttle": 90000
+  }
 }

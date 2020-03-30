@@ -24,9 +24,8 @@ const client = new MongoClient(uri, {
 });
 
 client.connect(err => {
-  if (err) 
-    return console.log(err);
-  
+  if (err) return console.log(err);
+
   db = client.db(process.env.DB_NAME);
   app.listen("3000", () => {
     console.log("Listening on port 3000");
@@ -34,13 +33,21 @@ client.connect(err => {
 });
 
 app.post("/quotes", (req, res) => {
-  db.collection("samples").insertOne(req.body, (err,result) => {
-    if (err) return (console.log(err))
-    console.log(`saved to database ${process.env.DB_NAME}`)
-    res.redirect("/")
-  })
+  db.collection("samples").insertOne(req.body, (err, result) => {
+    if (err) return console.log(err);
+    console.log(`saved to database ${process.env.DB_NAME}`);
+    res.redirect("/");
+  });
   console.log(req.body);
 });
 
+app.get("/", (req, res) => {
+  var cursor = db
+    .collection("samples")
+    .find()
+    .toArray((err, results) => {
+      console.log(results)
+    });
+});
 
 console.log("start");
