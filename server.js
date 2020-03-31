@@ -42,12 +42,13 @@ app.post("/quotes", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  
   var cursor = db
     .collection("samples")
     .find()
     .toArray((err, results) => {
       console.log(results)
+      if (err) return (console.log(err))
+      res.render(__dirname + "/index.ejs", {samples: results})
       
     });
 });
