@@ -13,7 +13,16 @@ var listener = app.listen("8080", () => {
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  var cursor = db
+    .collection("samples")
+    .find()
+    .toArray((err, results) => {
+      console.log(results)
+      if (err) return (console.log(err))
+      res.render(__dirname + "/index.ejs", {samples: results})
+      
+    });
+  console.log(cursor)
 });
 
 var db;
@@ -27,7 +36,7 @@ client.connect(err => {
   if (err) return console.log(err);
 
   db = client.db(process.env.DB_NAME);
-  console.log(db)
+  //console.log(db.collection)
   app.listen("3000", () => {
     console.log("Listening on port 3000");
   });
@@ -43,15 +52,7 @@ app.post("/quotes", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  var cursor = db
-    .collection("samples")
-    .find()
-    .toArray((err, results) => {
-      console.log(results)
-      if (err) return (console.log(err))
-      res.render(__dirname + "/index.ejs", {samples: results})
-      
-    });
+
 });
 
 
