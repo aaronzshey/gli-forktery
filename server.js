@@ -27,6 +27,7 @@ client.connect(err => {
   if (err) return console.log(err);
 
   db = client.db(process.env.DB_NAME);
+  console.log(db)
   app.listen("3000", () => {
     console.log("Listening on port 3000");
   });
