@@ -4,7 +4,6 @@ const bodyParser = require("body-parser");
 const app = express();
 const MongoClient = require("mongodb").MongoClient;
 app.set("view engine", "ejs");
-app.set("views", __dirname + "/views");
 
 app.get("/", (req, res) => {
   res.render("index");
