@@ -13,3 +13,8 @@ app.get("/", (req, res) => {
 app.listen(3000, () => {
   console.log("Listening on port 30000");
 });
+
+app.post("/posts/input", async (req, res) => {
+  await req.body
+  console.log(req.body)
+})
