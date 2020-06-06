@@ -11,7 +11,6 @@ const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-const db = client.dbName(process.env.DB_NAME)
 /* 
 \\  app.use  declarations
 */
@@ -34,10 +33,13 @@ app.post("/posts/input", (req, res) => {
   console.log(req.body);
 });
 
+
 client.connect(err => {
   if (err) return console.error(err);
+  const db = client.db(process.env.DB_NAME)
+
   console.log("Connected to server");
 });
 
-const docs = db.find({}).toArray()
-console.log(docs)
+//const docs = db.find({}).toArray()
+//console.log(docs)
