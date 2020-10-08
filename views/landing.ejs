@@ -1,0 +1,13 @@
+<script>
+function redirect() {
+window.location.href = '/';
+}
+setInterval(redirect, 2000)</script>
+
+<% if (result) {%>
+You have logged in succesfully!  Redirecting...
+<% } else {%>
+Incorrect credentials
+<br>
+<a href="/login">Try Again</a>
+<% } %>

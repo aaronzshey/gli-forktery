@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/homestyles.css" type="text/css" />
+
+    <!-- import the webpage's javascript file -->
+    <script type="text/javascript" src="https://unpkg.com/paper"></script>
+
+    <!-- load paper -->
+    <script
+      src="js/background.js"
+      type="text/paperscript"
+      canvas="paperplace"
+    ></script>
+
+    <!--  Imported after to allow access to vars-->
+
+    <script type="text/javascript" src="js/modal.js"></script>
+    <script type="text/javascript" src="js/runanimation.js"></script>
+  </head>
+  
+  <body>
+    <div id="fixed">Already a user? <a id="loginlink">Log In</a></div>
+    <canvas id="paperplace"> </canvas>
+    <div id="container">
+      <div id="logo">
+        <div id="text">KA-ZAP!</div>
+      </div>
+    </div>
+
+    <div id="spacer"></div>
+
+    
+    <div id="modal-bg">
+  <div id="modal-container">
+    <div id="close">&times;</div>
+    <form action="/posts/login">
+
+      <input type="text" name="username" placeholder="Username" />
+      <input type="password" name="password" placeholder="Password" />
+      <input type="submit" value="Log In" />
+    </form>
+  </div>
+</div>
+
+    <!--
+    <div id="skewed">
+      <div id="desc">
+        
+      </div>
+      
+     
+
+    </div> -->
+  </body>
+</html>

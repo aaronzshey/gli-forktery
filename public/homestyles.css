@@ -1,0 +1,179 @@
+/*
+TO DO: Change div size and button on different @media screen and print
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right, #ff5349, #ffbf00);
+  font-family: Helvetica;
+  margin-top: 20%;
+  height: 100%;
+}
+
+#spacer{
+  
+  height: 50%;
+  width: 50%;
+}
+
+
+#container {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 200px;
+  background-image: linear-gradient(to left, #ecf344, white);
+  max-width: 50%;
+  border-radius: 25px;
+  transition: 0.5s;
+  z-index: 1000;
+}
+
+#container:hover {
+  box-shadow: 10px 10px #0bb787;
+  transition: 0.5s;
+}
+
+#logo {
+  
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-image: linear-gradient(to right, #f3bd31, #feec35);
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#logo:hover {
+  box-shadow: 10px 10px #0bb787;
+  transition: 0.5s;
+}
+
+#text {
+  color: #3167f3;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 25px;
+}
+
+#fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 15px;
+  margin: 10px;
+  z-index: 500;
+}
+
+#loginlink{
+  cursor: pointer;
+}
+
+#fixed > a {
+  color: rgba(49, 103, 243, 0.5);
+}
+
+canvas {
+  position: absolute;
+  width: 100%;
+  height: 200%;
+}
+
+/* #skewed {
+  margin-top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 100px;
+  background-image: linear-gradient(to left, #801edb, #00bfff);
+  transform: skewY(10deg);
+  border-radius: 20px;
+  color: white;
+  z-index: 1000;
+}
+
+#desc {
+  display: block;
+  transform: skewY(-10deg);
+  outline: none;
+} */
+
+button{
+  padding: 20px;
+  z-index: 1000;
+  
+}
+button:hover{
+  padding: 10px
+}
+
+
+/* LOG IN MODAL */
+#modal-bg{
+  display: none;
+  position: fixed;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background-color: rgba(0,0,0,0.4)
+}
+
+#modal-container {
+  z-index: 3;
+  padding: 20px;
+  background-color: powderblue;
+  margin: 20%;
+  border-radius: 5px;
+  z-index: 3;
+   text-align: left;
+}
+
+input {
+  width: 50%;
+  padding: 25px;
+  margin: 12px;
+  border-radius: 15px;
+  border: 2px solid purple;
+  outline: none;
+  font-size: 20px;
+   transition: 0.5s;
+
+}
+
+input[type="submit"] {
+  background-color: lightgreen;
+  transition: 0.5s;
+}
+input[type="submit"]:hover {
+  background-color: #9090ee;
+  transition: 0.5s;
+}
+
+input:focus {
+  box-shadow: 0px 0px 10px #8a2be2;
+  transition: 0.5s;
+}
+
+#close{
+  float: right;
+  font-weight: bold;
+  font-size: 28px;
+}
+#close:hover, #close:focus{
+  color: red;
+}
